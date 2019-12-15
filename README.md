@@ -11,3 +11,6 @@ Next, load devtools and install the package from the repository
 library(devtools)  
 install_github("jwilliamrozelle/figured")  
 ```
+
+## Main features
+Main functions of the package include some data manipulation functions and ODK Briefcase in R. This package will allow you to pull and export normal and encrypted forms. 
