@@ -10,4 +10,4 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
 SystemRequirements: Java 8.0.221 or higher
-Imports: rJava, dplyr, lazyeval, scales
+Imports: rJava, dplyr, lazyeval, scales, utils

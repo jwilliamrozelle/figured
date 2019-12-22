@@ -3,7 +3,8 @@
 #' @title  pullForm
 #'
 #' @description  This function pulls forms from an odk server using ODK Briefcase. It's likely useful to set some of the parameters in variables, as they will be necessary to export the forms.
-#'
+#' 
+#' @note This function will check for and download ODK Briefcase. Make sure your firewalls allow for this the first time you run an odk function.
 #'
 #' @param url The URL to the ODK Aggregate server. This may be something like `https://kc.humanitarianresponse.info/<USERID>/`. Be sure to include your userid here if the server requires it.
 #' @param userid The user id for your odk aggregate server account. This must have permission to view submissions.
@@ -32,11 +33,10 @@
 
 
 pullForm <- function(url, userid, passwd, formid, storage = getwd()) {
-  require(rJava)
-  
+  figured::odkbc_CheckAndDL()
   tryCatch({
   # show the filepath to odkbriefcase
-  odkbc <- system.file("java/ODK-Briefcase-v1.17.1.jar", package = "figured")
+  odkbc <- system.file("java/ODK-Briefcase.jar", package = "figured")
   #url_user <- paste0(url, "/", userid, "/")
   # construct the odk briefcase system command
   pullODK_cmd <- paste0(

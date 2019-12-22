@@ -4,7 +4,8 @@
 #' @title  exportForm
 #'
 #' @description  This function pulls forms from an odk server using ODK Briefcase. It's likely useful to set some of the parameters in variables, as they will be necessary to export the forms.
-#'
+#' 
+#' @note This function will check for and download ODK Briefcase. Make sure your firewalls allow for this the first time you run an odk function.
 #'
 #' @param formid The unique formid string for your server.
 #' @param exportDir Export Directory. If left NULL, the function will use odk_export in the working directory and create odk_export in the working directory if it doesn't exist.
@@ -17,6 +18,7 @@
 #' @param pullBefore Logical parameter, defaults to False. If you want to pull before export. Regardless, at least one manual pull is required fefore .
 #'
 #' @author J.W. Rozelle
+#' 
 #'
 #'
 #' @export exportForm
@@ -50,7 +52,9 @@ exportForm <-
            mediaInclude = TRUE,
            splitMultiple = TRUE,
            pullBefore = FALSE) {
-    require(rJava)
+    
+    # make sure ODK Briefcase is downloaded and in the correct directory
+    figured::odkbc_CheckAndDL()
     
     if (is.null(formid)) {
       message("The form ID has not been specified. You must specify the formID")

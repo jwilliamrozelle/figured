@@ -33,14 +33,14 @@ exportForm(
 
 \item{splitMultiple}{Optional, logical parameter, defaults to TRUE. IF you do not wish to split 'select_multiple' type questions into separate columns, mark false.}
 
-\item{pullBefore}{Logical parameter, defaults to False. If you want to pull before.}
+\item{pullBefore}{Logical parameter, defaults to False. If you want to pull before export. Regardless, at least one manual pull is required fefore .}
 }
 \description{
 This function pulls forms from an odk server using ODK Briefcase. It's likely useful to set some of the parameters in variables, as they will be necessary to export the forms.
 }
 \examples{
 
-# specify 
+# specify arguments
 
 odkbc_storage   <- "<your/odk/storage/path>"
 odkbc_export    <- "<your/export/file/path>"
@@ -52,7 +52,8 @@ odk_url         <- paste0("https://kc.humanitarianresponse.info/", odk_username)
 pullForm(odk_url, odk_username, "PASSWORD", random_id, storage = odkbc_storage)
 
 # Export ODK
-exportForm(random_id, odkbc_export, random_filename, odkbc_storage, pullBefore = FALSE)
+exportForm(random_id, odkbc_export, random_filename, odkbc_storage)
+
 
 
 }
