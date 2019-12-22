@@ -36,9 +36,9 @@ odkbc_CheckAndDL <- function() {
   # Check to see whether ODK briefcase exists in the proper destination, return messages throughout the function
   if (!file.exists(destination)) {
     message("It appears that ODK has not yet been downloaded and installed in the package.")
-    writeLines("\nAttempting to download ODK-Briefcase.jar...")
+    writeLines("\nAttempting to download ODK-Briefcase.jar.../n")
     # if the ODK Briefcase file does not exist, download it.
-    download.file(odkDLSource, destination, method = "auto")
+    download.file(odkDLSource, destination, method = "auto", mode = "wb")
     
     # After completing the download function, check to see whether the file exists in the proper directory
     if (file.exists(destination)) {
