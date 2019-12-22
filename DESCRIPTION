@@ -1,7 +1,7 @@
 Package: figured
 Type: Package
 Title: figured
-Version: 0.1.0
+Version: 0.1.01
 Authors@R: person("Jeffrey", "Rozelle", email = "jwrozelle@figured.io",
                   role = c("aut", "cre"))
 Description: Simple functions to assist with Monitoring & Evaluation
