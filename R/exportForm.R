@@ -62,7 +62,7 @@ exportForm <-
       tryCatch({
         # show the filepath to odkbriefcase
         odkbc <-
-          system.file("java/ODK-Briefcase-v1.17.1.jar", package = "figured")
+          system.file("java/ODK-Briefcase.jar", package = "figured")
         
         # if export directory is not specified - use odk_export in the working directory. Create it if it doesn't exist
         if (is.null(exportDir)) {
