@@ -38,6 +38,9 @@ exportForm(
 \description{
 This function pulls forms from an odk server using ODK Briefcase. It's likely useful to set some of the parameters in variables, as they will be necessary to export the forms.
 }
+\note{
+This function will check for and download ODK Briefcase. Make sure your firewalls allow for this the first time you run an odk function.
+}
 \examples{
 
 # specify arguments

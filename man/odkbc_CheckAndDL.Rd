@@ -7,7 +7,10 @@
 odkbc_CheckAndDL()
 }
 \description{
-This function is NOT meant to be called directly. It is embedded within other ODK functions to make sure that ODK is downloaded in the correct directory
+This function is embedded within other ODK functions to make sure that ODK is downloaded in the correct directory
+}
+\note{
+This function is not necessary to by itself. Anytime ODK is needed in this package, the function is run.
 }
 \examples{
 
