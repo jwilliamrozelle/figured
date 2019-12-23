@@ -23,18 +23,18 @@
 odkbc_CheckAndDL <- function() {
   require(utils)
   # Check whether inst exists, if not, then create it.
-  if (!dir.exists(paste0(system.file(package = "figured")))) {
-    dir.create(paste0(system.file(package = "figured")))
+  if (!dir.exists(paste0(path.package(package = "figured"), "/java"))) {
+    dir.create(paste0(path.package(package = "figured"), "/java"))
   }
 
-  # create java subdirectory
-  if (!dir.exists(paste0(system.file("java", package = "figured")))) {
-    dir.create(paste0(system.file("java", package = "figured")))
-  }
+  # # create java subdirectory
+  # if (!dir.exists(paste0(system.file("java", package = "figured")))) {
+  #   dir.create(paste0(system.file("java", package = "figured")))
+  # }
   
   # Set destination
   destination <-
-    paste0(system.file("java", package = "figured"),
+    paste0(path.package(package = "figured"), "/java",
            "/ODK-Briefcase.jar")
   
   # Set url for version of ODK that this will use
