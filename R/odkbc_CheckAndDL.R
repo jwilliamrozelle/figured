@@ -24,7 +24,7 @@ odkbc_CheckAndDL <- function() {
   require(utils)
   # Set destination
   destination <-
-    paste0(system.file("java/", package = "figured"),
+    paste0(system.file("inst/java/", package = "figured"),
            "/ODK-Briefcase.jar")
   
   # Set url for version of ODK that this will use
