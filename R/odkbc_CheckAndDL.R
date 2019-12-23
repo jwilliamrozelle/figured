@@ -26,12 +26,15 @@ odkbc_CheckAndDL <- function() {
   if (!dir.exists("inst")) {
     dir.create("inst")
   }
+<<<<<<< HEAD
   
   # create java subdirectory
   if (!dir.exists("inst/java/")) {
     dir.create("inst/java/")
   }
   
+=======
+>>>>>>> 50ae268cdbc441ba110869d26e69766aa5d2f5db
   # Set destination
   destination <-
     paste0(system.file("inst/java/", package = "figured"),
