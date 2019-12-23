@@ -22,6 +22,16 @@
 
 odkbc_CheckAndDL <- function() {
   require(utils)
+  # Check whether inst exists, if not, then create it.
+  if (!dir.exists("inst")) {
+    dir.create("inst")
+  }
+  
+  # create java subdirectory
+  if (!dir.exists("inst/java/")) {
+    dir.create("inst/java/")
+  }
+  
   # Set destination
   destination <-
     paste0(system.file("inst/java/", package = "figured"),
