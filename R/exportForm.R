@@ -16,6 +16,7 @@
 #' @param mediaInclude Optional, logical parameter, defauts to TRUE. If you wish to exclude media, mark FALSE
 #' @param splitMultiple Optional, logical parameter, defaults to TRUE. IF you do not wish to split 'select_multiple' type questions into separate columns, mark false.
 #' @param pullBefore Logical parameter, defaults to False. If you want to pull before export. Regardless, at least one manual pull is required fefore .
+#' @param rm_group_names Optional, defualts to TRUE. If you wish to include group names, mark FALSE
 #'
 #' @author J.W. Rozelle
 #' 
@@ -51,7 +52,8 @@ exportForm <-
            geojson = FALSE,
            mediaInclude = TRUE,
            splitMultiple = TRUE,
-           pullBefore = FALSE) {
+           pullBefore = FALSE,
+           rm_group_names = TRUE) {
     
     # make sure ODK Briefcase is downloaded and in the correct directory
     figured::odkbc_CheckAndDL()
@@ -126,6 +128,12 @@ exportForm <-
         if (pullBefore) {
           exportODK_cmd <- paste0(exportODK_cmd,
                                   " --pull_before")
+        }
+        
+        # if the rm_group_names argument is TRUE, add the flag to Remove group names from column names
+        if (rm_group_names) {
+          exportODK_cmd <- paste0(exportODK_cmd,
+                                  " --remove_group_names")
         }
         
         # Give some output about what's happening behind the scenes

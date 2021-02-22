@@ -13,7 +13,8 @@ exportForm(
   geojson = FALSE,
   mediaInclude = TRUE,
   splitMultiple = TRUE,
-  pullBefore = FALSE
+  pullBefore = FALSE,
+  rm_group_names = TRUE
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ exportForm(
 \item{splitMultiple}{Optional, logical parameter, defaults to TRUE. IF you do not wish to split 'select_multiple' type questions into separate columns, mark false.}
 
 \item{pullBefore}{Logical parameter, defaults to False. If you want to pull before export. Regardless, at least one manual pull is required fefore .}
+
+\item{rm_group_names}{Optional, defualts to TRUE. If you wish to include group names, mark FALSE}
 }
 \description{
 This function pulls forms from an odk server using ODK Briefcase. It's likely useful to set some of the parameters in variables, as they will be necessary to export the forms.
