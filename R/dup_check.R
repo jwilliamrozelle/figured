@@ -19,8 +19,6 @@
 #' female.df$dup_femID <- NA
 #' female.df$dup_femID <- dup_check(female.df, "clus_FemaleID")
 #' 
-#' 
-
 
 dup_check <- function(xset, variable) {
   duplicates.df <- xset #create set for duplication

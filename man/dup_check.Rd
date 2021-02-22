@@ -21,7 +21,6 @@ This function finds duplicates and returns a boolean vector. Each instance of a 
 female.df$dup_femID <- NA
 female.df$dup_femID <- dup_check(female.df, "clus_FemaleID")
 
-
 }
 \author{
 J.W. Rozelle

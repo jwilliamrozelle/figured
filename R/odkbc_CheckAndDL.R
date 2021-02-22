@@ -39,7 +39,7 @@ odkbc_CheckAndDL <- function() {
   
   # Set url for version of ODK that this will use
   odkDLSource <-
-    "https://github.com/opendatakit/briefcase/releases/download/v1.17.1/ODK-Briefcase-v1.17.1.jar"
+    "https://github.com/getodk/briefcase/releases/download/v1.18.0/ODK-Briefcase-v1.18.0.jar"
   
   message("Checking whether ODK Briefcase exists in the proper directory...")
   
