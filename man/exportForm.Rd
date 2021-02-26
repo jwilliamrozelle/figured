@@ -14,7 +14,8 @@ exportForm(
   mediaInclude = TRUE,
   splitMultiple = TRUE,
   pullBefore = FALSE,
-  rm_group_names = TRUE
+  rm_group_names = TRUE,
+  oc = TRUE
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ exportForm(
 \item{pullBefore}{Logical parameter, defaults to False. If you want to pull before export. Regardless, at least one manual pull is required fefore .}
 
 \item{rm_group_names}{Optional, defualts to TRUE. If you wish to include group names, mark FALSE}
+
+\item{oc}{Optional, defaults to TRUE. Set to true (default behavior), this will overwrite a previously exported CSV. Set to false, it will not. Note that you must change the name of your csv for the function to work if set to FALSE and you've already exported to the same directory with the same filename}
 }
 \description{
 This function pulls forms from an odk server using ODK Briefcase. It's likely useful to set some of the parameters in variables, as they will be necessary to export the forms.

@@ -17,6 +17,7 @@
 #' @param splitMultiple Optional, logical parameter, defaults to TRUE. IF you do not wish to split 'select_multiple' type questions into separate columns, mark false.
 #' @param pullBefore Logical parameter, defaults to False. If you want to pull before export. Regardless, at least one manual pull is required fefore .
 #' @param rm_group_names Optional, defualts to TRUE. If you wish to include group names, mark FALSE
+#' @param oc Optional, defaults to TRUE. Set to true (default behavior), this will overwrite a previously exported CSV. Set to false, it will not. Note that you must change the name of your csv for the function to work if set to FALSE and you've already exported to the same directory with the same filename
 #'
 #' @author J.W. Rozelle
 #' 
@@ -53,7 +54,8 @@ exportForm <-
            mediaInclude = TRUE,
            splitMultiple = TRUE,
            pullBefore = FALSE,
-           rm_group_names = TRUE) {
+           rm_group_names = TRUE,
+           oc = TRUE) {
     
     # make sure ODK Briefcase is downloaded and in the correct directory
     figured::odkbc_CheckAndDL()
@@ -134,6 +136,12 @@ exportForm <-
         if (rm_group_names) {
           exportODK_cmd <- paste0(exportODK_cmd,
                                   " --remove_group_names")
+        }
+        
+        # if the oc argument is TRUE, add the flag to Remove group names from column names
+        if (oc) {
+          exportODK_cmd <- paste0(exportODK_cmd,
+                                  " --overwrite_csv_export")
         }
         
         # Give some output about what's happening behind the scenes
