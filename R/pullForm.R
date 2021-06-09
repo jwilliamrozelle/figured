@@ -68,7 +68,7 @@ pullForm <- function(url = NULL,
   
   tryCatch({
   # show the filepath to odkbriefcase
-  odkbc <- system.file("inst/java/ODK-Briefcase.jar", package = "figured")
+  odkbc <- system.file("java/ODK-Briefcase.jar", package = "figured")
   #url_user <- paste0(url, "/", userid, "/")
   # construct the odk briefcase system command
   pullODK_cmd <- paste0(
