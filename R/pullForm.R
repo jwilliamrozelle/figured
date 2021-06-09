@@ -11,6 +11,8 @@
 #' @param passwd The Password for your account. Be careful about keeping this in your R code. Best practice is likely to put this in your .Renviron file.
 #' @param formid The unique formid string for your server.
 #' @param storage Optional parameter, and defaults to your current working directory.
+#' @param central Specify as TRUE if pulling from an ODK Central server. It is FALSE by default, which means that the command will assume an aggregate type server.
+#' @param project_id When pulling from a central server, it is essential to specify a project_id. 
 #'
 #' @author J.W. Rozelle
 #'
@@ -32,28 +34,80 @@
 #'
 
 
-pullForm <- function(url, userid, passwd, formid, storage = getwd()) {
+pullForm <- function(url = NULL, 
+                     userid = NULL, 
+                     passwd = NULL, 
+                     formid = NULL, 
+                     storage = getwd(), 
+                     central = FALSE, 
+                     project_id = NULL
+                     ) {
   figured::odkbc_CheckAndDL()
+  
+  # produce errors if required arguments are not specified.
+  #   Check if URL is specified
+  if(is.null(url)) {
+    stop("You must specify a URL.", call. = TRUE)
+  }
+  #   Check if userid is specified
+  if (is.null(userid)) {
+    stop("You must specify a user id. It must be an email if using ODK Central", call. = TRUE)
+  }
+  #   Check if password is specified
+  if (is.null(passwd)) {
+    stop("You must specify a password.", call. = TRUE)
+  }
+  #   Check if formid is specified
+  if (is.null(passwd)) {
+    stop("You must specify a form id.", call. = TRUE)
+  }
+  # if central was specified, check for project_id
+  if (central && is.null(project_id)) {
+    stop("If you are using a central server type, you must specify a project ID.", call. = TRUE)
+  }
+  
   tryCatch({
   # show the filepath to odkbriefcase
-  odkbc <- system.file("java/ODK-Briefcase.jar", package = "figured")
+  odkbc <- system.file("inst/java/ODK-Briefcase.jar", package = "figured")
   #url_user <- paste0(url, "/", userid, "/")
   # construct the odk briefcase system command
   pullODK_cmd <- paste0(
     'java -jar "',
-    odkbc,
-    '" --pull_aggregate --storage_directory "',
-    storage,
-    '" --odk_url "',
-    url,
-    '" --odk_username ',
-    userid,
-    ' --odk_password "',
-    passwd,
-    '" -id "',
-    formid,
-    '"'
-  )
+    odkbc)
+  
+  if (!central) {
+    paste0(pullodk_cmd,
+           '" --pull_aggregate --storage_directory "',
+           storage,
+           '" --odk_url "',
+           url,
+           '" --odk_username ',
+           userid,
+           ' --odk_password "',
+           passwd,
+           '" -id "',
+           formid,
+           '"'
+    )
+  } else if (central) {
+    paste0(pullodk_cmd,
+           '" --pull_central --storage_directory "',
+           storage,
+           '" --odk_url "',
+           url,
+           '" --odk_email ',
+           userid,
+           ' --odk_password "',
+           passwd,
+           '" -id "',
+           formid,
+           '" --project_id "',
+           project_id,
+           '"'
+    )
+  } else {
+    message("Error with specifying central, must be TRUE, FALSE or left missing")
+  }
   
   # Give some output about what's happening behind the scenes
   message("Next, running... ")
@@ -66,7 +120,7 @@ pullForm <- function(url, userid, passwd, formid, storage = getwd()) {
   error = function(err) {
     print("procFreq_ERROR")
     return(structure(err, class = "try-error"))
-    print("You've likely produced this error either because your data is not in 1 / 0 form, or because you did not put quotation marks around variable names")
+    print("It appears that the infromation you have entered is not correct. Check that all inputs are valid, and try again.")
   })
 }
 

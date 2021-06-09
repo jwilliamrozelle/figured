@@ -1,7 +1,7 @@
 Package: figured
 Type: Package
 Title: figured
-Version: 0.1.02
+Version: 0.1.04
 Authors@R: person("Jeffrey", "Rozelle", email = "jwrozelle@figured.io",
                   role = c("aut", "cre"))
 Description: Simple functions to assist with Monitoring & Evaluation
@@ -9,5 +9,5 @@ License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
-SystemRequirements: Java 8.0.221 or higher
+SystemRequirements: Java >= 8 or higher, Windows 10
 Imports: rJava, dplyr, lazyeval, scales, utils, survey

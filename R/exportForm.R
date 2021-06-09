@@ -57,6 +57,36 @@ exportForm <-
            rm_group_names = TRUE,
            oc = TRUE) {
     
+    # Error messages ####
+    
+    # Check for Java at runtime
+    rJava::.jinit()
+    jv <- rJava::.jcall("java/lang/System", "S", "getProperty", "java.runtime.version")
+    if(substr(jv, 1L, 2L) == "1.") {
+      jvn <- as.numeric(paste0(strsplit(jv, "[.]")[[1L]][1:2], collapse = "."))
+      if(jvn < 1.8) stop("Java >= 8 is needed for this package but not available")
+    }
+    
+    ## Check if id is specified, stop if not.
+    if(is.null(formid)) {
+      stop("Form id not specified. Try again.", call. = TRUE)
+    }
+    
+    # Check if 
+    if(is.null(exportDir)) {
+      message("Export Directory was not specified. A new export directory will be created in your working directory.")
+    }
+    
+    if(storage == getwd()) {
+      message("Storage directory was not specified. The working directory will be used")
+    }
+    
+    if(is.null(fileName)) {
+      message("No file name was specified, using the 'formid' as the filename")
+    }
+    
+    
+    
     # make sure ODK Briefcase is downloaded and in the correct directory
     figured::odkbc_CheckAndDL()
     
@@ -66,7 +96,7 @@ exportForm <-
       tryCatch({
         # show the filepath to odkbriefcase
         odkbc <-
-          system.file("java/ODK-Briefcase.jar", package = "figured")
+          system.file("inst/java/ODK-Briefcase.jar", package = "figured")
         
         # if export directory is not specified - use odk_export in the working directory. Create it if it doesn't exist
         if (is.null(exportDir)) {

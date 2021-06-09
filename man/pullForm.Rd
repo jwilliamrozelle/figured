@@ -4,7 +4,15 @@
 \alias{pullForm}
 \title{pullForm}
 \usage{
-pullForm(url, userid, passwd, formid, storage = getwd())
+pullForm(
+  url = NULL,
+  userid = NULL,
+  passwd = NULL,
+  formid = NULL,
+  storage = getwd(),
+  central = FALSE,
+  project_id = NULL
+)
 }
 \arguments{
 \item{url}{The URL to the ODK Aggregate server. This may be something like `https://kc.humanitarianresponse.info/<USERID>/`. Be sure to include your userid here if the server requires it.}
@@ -16,6 +24,10 @@ pullForm(url, userid, passwd, formid, storage = getwd())
 \item{formid}{The unique formid string for your server.}
 
 \item{storage}{Optional parameter, and defaults to your current working directory.}
+
+\item{central}{Specify as TRUE if pulling from an ODK Central server. It is FALSE by default, which means that the command will assume an aggregate type server.}
+
+\item{project_id}{When pulling from a central server, it is essential to specify a project_id.}
 }
 \description{
 This function pulls forms from an odk server using ODK Briefcase. It's likely useful to set some of the parameters in variables, as they will be necessary to export the forms.
