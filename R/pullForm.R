@@ -76,7 +76,7 @@ pullForm <- function(url = NULL,
     odkbc)
   
   if (!central) {
-    paste0(pullodk_cmd,
+    pullODK_cmd <- paste0(pullODK_cmd,
            '" --pull_aggregate --storage_directory "',
            storage,
            '" --odk_url "',
@@ -90,7 +90,7 @@ pullForm <- function(url = NULL,
            '"'
     )
   } else if (central) {
-    paste0(pullodk_cmd,
+    pullODK_cmd <- paste0(pullODK_cmd,
            '" --pull_central --storage_directory "',
            storage,
            '" --odk_url "',
@@ -105,8 +105,6 @@ pullForm <- function(url = NULL,
            project_id,
            '"'
     )
-  } else {
-    message("Error with specifying central, must be TRUE, FALSE or left missing")
   }
   
   # Give some output about what's happening behind the scenes
